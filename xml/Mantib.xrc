@@ -1,0 +1,1457 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+	<object class="wxFrame" name="m_frame">
+		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
+		<size>700,500</size>
+		<title>Mantib</title>
+		<centered>1</centered>
+		<object class="wxStatusBar" name="m_status">
+			<style>wxST_SIZEGRIP</style>
+			<fields>1</fields>
+		</object>
+		<object class="wxSplitterWindow" name="m_splitter">
+			<style>wxSP_3D|wxSP_NO_XP_THEME</style>
+			<sashpos>170</sashpos>
+			<gravity>0</gravity>
+			<minsize>10</minsize>
+			<orientation>horizontal</orientation>
+			<object class="wxPanel" name="m_servers_panel">
+				<style>wxTAB_TRAVERSAL</style>
+				<object class="wxBoxSizer">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>0</border>
+						<object class="unknown" name="m_auin_servers" />
+					</object>
+				</object>
+			</object>
+			<object class="wxPanel" name="m_logger_panel">
+				<style>wxTAB_TRAVERSAL</style>
+				<object class="wxBoxSizer">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>0</border>
+						<object class="unknown" name="m_auin_logger" />
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxMenuBar" name="m_menubar">
+		<label></label>
+		<object class="wxMenu" name="file">
+			<label>File</label>
+			<object class="wxMenuItem" name="new_user">
+				<label>New User\tCtrl+N</label>
+				<help>Create new user...</help>
+			</object>
+			<object class="wxMenuItem" name="sign_in">
+				<label>Sign In/Change User\tCtrl+O</label>
+				<help>Sign In or Change User</help>
+			</object>
+			<object class="separator" />
+			<object class="wxMenuItem" name="group_import">
+				<label>Group Import...</label>
+				<help>Import a group from a CSV file.</help>
+			</object>
+			<object class="wxMenuItem" name="group_export">
+				<label>Group Export...</label>
+				<help>Export a group as a CSV file.</help>
+			</object>
+			<object class="separator" />
+			<object class="wxMenuItem" name="exit">
+				<label>Exit\tCtrl+E</label>
+				<help>Exit Mantib</help>
+			</object>
+		</object>
+		<object class="wxMenu" name="edit">
+			<label>Edit</label>
+			<object class="wxMenuItem" name="enable_status_ssh">
+				<label>Enable SSH Status Checks</label>
+				<help></help>
+				<checked>1</checked>
+				<checkable>1</checkable>
+			</object>
+			<object class="wxMenuItem" name="enable_status_rcon">
+				<label>Enable RCON Status Checks</label>
+				<help></help>
+				<checked>1</checked>
+				<checkable>1</checkable>
+			</object>
+			<object class="separator" />
+			<object class="wxMenuItem" name="preferences">
+				<label>Preferences</label>
+				<help></help>
+			</object>
+		</object>
+		<object class="wxMenu" name="help">
+			<label>Help</label>
+			<object class="wxMenuItem" name="about_mantib">
+				<label>About Mantib\tF1</label>
+				<help>Show about dialog</help>
+			</object>
+		</object>
+	</object>
+	<object class="wxPanel" name="ssh_panel">
+		<style>wxTAB_TRAVERSAL</style>
+		<size>500,300</size>
+		<object class="wxFlexGridSizer">
+			<rows>2</rows>
+			<cols>1</cols>
+			<vgap>0</vgap>
+			<hgap>0</hgap>
+			<growablecols>0</growablecols>
+			<growablerows>0</growablerows>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND | wxALL</flag>
+				<border>5</border>
+				<object class="unknown" name="ssh_logger" />
+			</object>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxTextCtrl" name="ssh_cmd">
+					<style>wxTE_PROCESS_ENTER</style>
+					<value></value>
+					<maxlength>0</maxlength>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxPanel" name="rcon_panel">
+		<style>wxTAB_TRAVERSAL</style>
+		<size>500,300</size>
+		<object class="wxFlexGridSizer">
+			<rows>2</rows>
+			<cols>1</cols>
+			<vgap>0</vgap>
+			<hgap>0</hgap>
+			<growablecols>0</growablecols>
+			<growablerows>0</growablerows>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND | wxALL</flag>
+				<border>5</border>
+				<object class="unknown" name="rcon_logger" />
+			</object>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxTextCtrl" name="rcon_cmd">
+					<style>wxTE_PROCESS_ENTER</style>
+					<value></value>
+					<maxlength>0</maxlength>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxDialog" name="mnotes_dlg">
+		<style>wxDEFAULT_DIALOG_STYLE|wxMAXIMIZE_BOX|wxRESIZE_BORDER</style>
+		<size>500,300</size>
+		<title>Help</title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND | wxALL</flag>
+				<border>0</border>
+				<object class="wxPanel" name="m_panel4">
+					<style>wxTAB_TRAVERSAL</style>
+					<object class="wxBoxSizer">
+						<orient>wxVERTICAL</orient>
+						<object class="sizeritem">
+							<option>1</option>
+							<flag>wxALL|wxEXPAND</flag>
+							<border>5</border>
+							<object class="unknown" name="mnotes_help" />
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxDialog" name="mnu_dlg">
+		<style>wxDEFAULT_DIALOG_STYLE|wxSTAY_ON_TOP</style>
+		<size>327,226</size>
+		<title>New User</title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxFlexGridSizer">
+					<rows>4</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<growablecols>1</growablecols>
+					<growablerows></growablerows>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="mnu_username_txt">
+							<label>Username:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<object class="wxTextCtrl" name="mnu_username">
+							<value></value>
+							<maxlength>30</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="mnu_password_txt">
+							<label>Password:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<object class="wxTextCtrl" name="mnu_password">
+							<style>wxTE_PASSWORD|wxTE_PROCESS_ENTER</style>
+							<value></value>
+							<maxlength>30</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="mnu_sshaccess_txt">
+							<label>SSH Access:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>5</border>
+						<object class="wxCheckBox" name="mnu_sshaccess">
+							<label>Allow</label>
+							<checked>1</checked>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="mnu_rconaccess_txt">
+							<label>RCON Access:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>5</border>
+						<object class="wxCheckBox" name="mnu_rconaccess">
+							<label>Allow</label>
+							<checked>1</checked>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALIGN_CENTER</flag>
+				<border>5</border>
+				<object class="wxBoxSizer">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxLEFT|wxRIGHT|wxTOP</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="mnu_passrequire1">
+							<style>wxALIGN_LEFT</style>
+							<label>* User must be between 2 to 30 characters long</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxLEFT|wxRIGHT</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="mnu_passrequire2">
+							<style>wxALIGN_LEFT</style>
+							<label>* Pass must be between 8 to 30 characters long</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxBOTTOM|wxLEFT|wxRIGHT</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="mnu_passrequire3">
+							<style>wxALIGN_LEFT</style>
+							<label>* User/Pass must not contain spaces</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALIGN_CENTER</flag>
+				<border>0</border>
+				<object class="wxFlexGridSizer">
+					<rows>1</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<growablecols></growablecols>
+					<growablerows></growablerows>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="mnu_ok_btn">
+							<label>Ok</label>
+							<default>0</default>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="mnu_cancel_btn">
+							<label>Cancel</label>
+							<default>0</default>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxDialog" name="msi_dlg">
+		<style>wxDEFAULT_DIALOG_STYLE</style>
+		<size>300,127</size>
+		<title>Sign In</title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxFlexGridSizer">
+					<rows>2</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<growablecols>1</growablecols>
+					<growablerows></growablerows>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxLEFT</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="msi_username_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>Username: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<object class="wxTextCtrl" name="msi_username">
+							<value></value>
+							<maxlength>32</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxLEFT</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="msi_password_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>Password: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<object class="wxTextCtrl" name="msi_password">
+							<style>wxTE_PASSWORD|wxTE_PROCESS_ENTER</style>
+							<value></value>
+							<maxlength>24</maxlength>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALIGN_CENTER</flag>
+				<border>5</border>
+				<object class="wxFlexGridSizer">
+					<rows>1</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<growablecols></growablecols>
+					<growablerows></growablerows>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="msi_ok_btn">
+							<label>Ok</label>
+							<default>0</default>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="msi_cancel_btn">
+							<label>Cancel</label>
+							<default>0</default>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxDialog" name="mns_dlg">
+		<style>wxDEFAULT_DIALOG_STYLE</style>
+		<title>New Server</title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxFlexGridSizer">
+					<rows>8</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<growablecols>1</growablecols>
+					<growablerows></growablerows>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mns_name_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>Name: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mns_name">
+							<value></value>
+							<maxlength>32</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mns_ipaddress_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>IP Address: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mns_ipaddress">
+							<value></value>
+							<maxlength>45</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mns_group_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>Group: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_LEFT|wxALL</flag>
+						<border>3</border>
+						<object class="wxChoice" name="mns_group">
+							<selection>0</selection>
+							<content />
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mns_ssh_user_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>SSH User: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mns_ssh_user">
+							<value></value>
+							<maxlength>32</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mns_ssh_pass_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>SSH Pass: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mns_ssh_pass">
+							<style>wxTE_PASSWORD</style>
+							<value></value>
+							<maxlength>32</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mns_ssh_port_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>SSH Port: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_LEFT|wxALL</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mns_ssh_port">
+							<value>22</value>
+							<maxlength>10</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mns_rcon_pass_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>RCON Pass: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mns_rcon_pass">
+							<style>wxTE_PASSWORD</style>
+							<value></value>
+							<maxlength>32</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mns_rcon_port_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>RCON Port: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_LEFT|wxALL</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mns_rcon_port">
+							<value>27015</value>
+							<maxlength>10</maxlength>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALIGN_CENTER</flag>
+				<border>0</border>
+				<object class="wxFlexGridSizer">
+					<rows>1</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<growablecols></growablecols>
+					<growablerows></growablerows>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="mns_ok_btn">
+							<label>Ok</label>
+							<default>0</default>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="mns_cancel_btn">
+							<label>Cancel</label>
+							<default>0</default>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxDialog" name="mes_dlg">
+		<style>wxDEFAULT_DIALOG_STYLE</style>
+		<title>Edit Server</title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxFlexGridSizer">
+					<rows>9</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<growablecols>1</growablecols>
+					<growablerows></growablerows>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_RIGHT|wxALL</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="mes_id_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>ID:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_LEFT|wxALL</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="mes_id">
+							<style>wxALIGN_LEFT</style>
+							<label>0</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mes_name_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>Name: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mes_name">
+							<value></value>
+							<maxlength>32</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mes_ipaddress_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>IP Address: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mes_ipaddress">
+							<value></value>
+							<maxlength>45</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mes_group_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>Group: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_LEFT|wxALL</flag>
+						<border>3</border>
+						<object class="wxChoice" name="mes_group">
+							<selection>0</selection>
+							<content />
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mes_ssh_user_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>SSH User: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mes_ssh_user">
+							<value></value>
+							<maxlength>32</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mes_ssh_pass_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>SSH Pass: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mes_ssh_pass">
+							<style>wxTE_PASSWORD</style>
+							<value></value>
+							<maxlength>32</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mes_ssh_port_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>SSH Port: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_LEFT|wxALL</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mes_ssh_port">
+							<value>22</value>
+							<maxlength>10</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mes_rcon_pass_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>RCON Pass: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALIGN_CENTER|wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mes_rcon_pass">
+							<style>wxTE_PASSWORD</style>
+							<value></value>
+							<maxlength>32</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_RIGHT|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="mes_rcon_port_txt">
+							<style>wxALIGN_RIGHT</style>
+							<label>RCON Port: </label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_LEFT|wxALL</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="mes_rcon_port">
+							<value>27015</value>
+							<maxlength>10</maxlength>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALIGN_CENTER</flag>
+				<border>0</border>
+				<object class="wxFlexGridSizer">
+					<rows>1</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<growablecols></growablecols>
+					<growablerows></growablerows>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="mes_ok_btn">
+							<label>Ok</label>
+							<default>0</default>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="mes_cancel_btn">
+							<label>Cancel</label>
+							<default>0</default>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxDialog" name="msd_dlg">
+		<style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER</style>
+		<title>Mantib Settings</title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND</flag>
+				<border>0</border>
+				<object class="wxNotebook" name="msd_nb">
+					<object class="notebookpage">
+						<label>General</label>
+						<selected>1</selected>
+						<object class="wxPanel" name="m_panel4">
+							<style>wxTAB_TRAVERSAL</style>
+							<object class="wxFlexGridSizer">
+								<rows>3</rows>
+								<cols>1</cols>
+								<vgap>0</vgap>
+								<hgap>0</hgap>
+								<growablecols>0</growablecols>
+								<growablerows>0</growablerows>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<border>5</border>
+									<object class="wxGridBagSizer">
+										<vgap>0</vgap>
+										<hgap>0</hgap>
+										<growablecols>1</growablecols>
+										<growablerows></growablerows>
+										<object class="sizeritem">
+											<cellpos>0,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxCheckBox" name="msd_enable_sshstatus">
+												<label>Enable SSH Status</label>
+												<checked>1</checked>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>1,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="msd_statusssh_txt">
+												<label>SSH Check Frequency:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>1,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxTextCtrl" name="msd_sshstatus_time">
+														<value></value>
+														<maxlength>3</maxlength>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_LEFT|wxRIGHT</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="m_staticText35">
+														<label>Seconds</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>2,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxCheckBox" name="msd_enable_rconstatus">
+												<label>Enable RCON Status</label>
+												<checked>1</checked>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>3,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="msd_statusrcon_txt">
+												<label>RCON Check Frequency:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>3,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxTextCtrl" name="msd_rconstatus_time">
+														<value></value>
+														<maxlength>3</maxlength>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_LEFT|wxRIGHT</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="m_staticText36">
+														<label>Seconds</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>4,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="msd_max_rcon_attempts_txt">
+												<label>Max RCON Attempts:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>4,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxTextCtrl" name="msd_max_rcon_attempts">
+														<value></value>
+														<maxlength>3</maxlength>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxRIGHT</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="m_staticText361">
+														<label>before stopping</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>5,0</cellpos>
+											<cellspan>1,2</cellspan>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticLine" name="m_staticline81">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>6,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxCheckBox" name="msd_enable_debuglog">
+												<label>Enable Debug Log</label>
+												<checked>1</checked>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>7,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="m_staticText49">
+												<label>* This will create a log file in Mantib&apos;s current location. It contains only the data shown in the logger and will not go beyond 10240 bytes in size.</label>
+												<wrap>200</wrap>
+											</object>
+										</object>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<border>5</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticLine" name="m_staticline2">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxALIGN_CENTER</flag>
+									<border>5</border>
+									<object class="wxBoxSizer">
+										<orient>wxHORIZONTAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxButton" name="msd_general_save">
+												<label>Save</label>
+												<default>0</default>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxButton" name="msd_general_reset">
+												<label>Reset</label>
+												<default>0</default>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="notebookpage">
+						<label>Daemon Commands</label>
+						<selected>0</selected>
+						<object class="wxScrolledWindow" name="daemon_panel">
+							<style>wxHSCROLL|wxVSCROLL</style>
+							<size>500,400</size>
+							<object class="wxFlexGridSizer">
+								<rows>3</rows>
+								<cols>1</cols>
+								<vgap>0</vgap>
+								<hgap>0</hgap>
+								<growablecols>0</growablecols>
+								<growablerows>0</growablerows>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<border>5</border>
+									<object class="wxGridBagSizer">
+										<vgap>0</vgap>
+										<hgap>0</hgap>
+										<growablecols>1</growablecols>
+										<growablerows></growablerows>
+										<object class="sizeritem">
+											<cellpos>0,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="daemon_check_txt">
+												<label>Daemon Check:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>0,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="unknown" name="daemon_check_cmd" />
+										</object>
+										<object class="sizeritem">
+											<cellpos>1,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="dcheck_return_txt">
+												<label>Return:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>1,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxTextCtrl" name="dcheck_return">
+												<value></value>
+												<maxlength>0</maxlength>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>2,0</cellpos>
+											<cellspan>1,2</cellspan>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticLine" name="m_staticline6">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>3,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="daemon_start_txt">
+												<label>Daemon Start:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>3,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="unknown" name="daemon_start_cmd" />
+										</object>
+										<object class="sizeritem">
+											<cellpos>4,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="dstart_return_txt">
+												<label>Return:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>4,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxTextCtrl" name="dstart_return">
+												<value></value>
+												<maxlength>0</maxlength>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>5,0</cellpos>
+											<cellspan>1,2</cellspan>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticLine" name="m_staticline7">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>6,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="daemon_stop_txt">
+												<label>Daemon Stop:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>6,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="unknown" name="daemon_stop_cmd" />
+										</object>
+										<object class="sizeritem">
+											<cellpos>7,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="dstop_return_txt">
+												<label>Return:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>7,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxTextCtrl" name="dstop_return">
+												<value></value>
+												<maxlength>0</maxlength>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>8,0</cellpos>
+											<cellspan>1,2</cellspan>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticLine" name="m_staticline8">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>9,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="daemon_update_start_txt">
+												<label>Daemon Update Start:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>9,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="unknown" name="daemon_update_start_cmd" />
+										</object>
+										<object class="sizeritem">
+											<cellpos>10,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="dustart_return_txt">
+												<label>Return:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>10,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxTextCtrl" name="dustart_return">
+												<value></value>
+												<maxlength>0</maxlength>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>11,0</cellpos>
+											<cellspan>1,2</cellspan>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticLine" name="m_staticline9">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>12,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="daemon_update_stop_txt">
+												<label>Daemon Update Stop:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>12,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="unknown" name="daemon_update_stop_cmd" />
+										</object>
+										<object class="sizeritem">
+											<cellpos>13,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="dustop_return_txt">
+												<label>Return:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>13,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxTextCtrl" name="dustop_return">
+												<value></value>
+												<maxlength>0</maxlength>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>14,0</cellpos>
+											<cellspan>1,2</cellspan>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticLine" name="m_staticline10">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>15,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="daemon_update_check_txt">
+												<label>Daemon Update Check:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>15,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="unknown" name="daemon_update_check_cmd" />
+										</object>
+										<object class="sizeritem">
+											<cellpos>16,0</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="ducheck_return_txt">
+												<label>Return:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<cellpos>16,1</cellpos>
+											<cellspan>1,1</cellspan>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxTextCtrl" name="ducheck_return">
+												<value></value>
+												<maxlength>0</maxlength>
+											</object>
+										</object>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<border>5</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticLine" name="m_staticline1">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxALIGN_CENTER</flag>
+									<border>5</border>
+									<object class="wxBoxSizer">
+										<orient>wxHORIZONTAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxButton" name="msd_daemon_save">
+												<label>Save</label>
+												<default>0</default>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxButton" name="msd_daemon_reset">
+												<label>Reset</label>
+												<default>0</default>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxButton" name="msd_daemon_help">
+												<label>Help</label>
+												<default>0</default>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+</resource>

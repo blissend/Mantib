@@ -1,0 +1,11 @@
+#!wing
+#!version=4.0
+##################################################################
+# Wing IDE project file                                          #
+##################################################################
+[project attributes]
+proj.file-list = [loc('config.py'),
+                  loc('gpl.txt'),
+                  loc('Mantib.py'),
+                  loc('SRCDS.py')]
+proj.file-type = 'shared'

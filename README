@@ -1,0 +1,49 @@
+Overview
+========
+Mantib is a portable opensource (GPL License) crossplatform (Windows/Linux/OSX) game server management tool especially designed for Valve games running on servers with SSH access. It's purpose is to help eliminate the need to manually enter commands for server management.
+
+If you would like to contribute, then donations are always welcomed blissend.com/donate
+
+Compiling & Requirements
+========================
+It will work on Windows, Linux, and OSX. However, only the binaries for Windows and Linux is available. It has yet to be compiled for OSX.
+
+To run from source this is required...
+* Python 2.7
+* paramiko 1.7
+* pycrypto 2.3
+* wxPython 2.9.3.1
+
+If you wish to compile on Windows using pyinstall 2.5, follow similar steps like these...
+
+1. First make the spec file from the pyinstaller directory.
+python Makespec.py --onefile -w --icon=L:\Dropbox\Private\Projects\Mantib\images\mantiblogo.ico L:\Dropbox\Private\Projects\Mantib\Mantib.py
+
+2. Add the datas to include the images like so...
+a.datas += [('xml/Mantib.xrc','L:\\Dropbox\\Private\\Projects\\Mantib\\xml\\Mantib.xrc','DATA'),
+('images/mantiblogo.ico','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\mantiblogo.ico','DATA'),
+('images/group_add.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\group_add.png','DATA'),
+('images/group_edit.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\group_edit.png','DATA'),
+('images/group_delete.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\group_delete.png','DATA'),
+('images/group_go.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\group_go.png','DATA'),
+('images/server_add.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\server_add.png','DATA'),
+('images/server_edit.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\server_edit.png','DATA'),
+('images/server_key.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\server_key.png','DATA'),
+('images/server_delete.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\server_delete.png','DATA'),
+('images/arrow_right.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\arrow_right.png','DATA'),
+('images/stop.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\stop.png','DATA'),
+('images/transmit_add.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\transmit_add.png','DATA'),
+('images/transmit_delete.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\transmit_delete.png','DATA'),
+('images/transmit_go.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\transmit_go.png','DATA'),
+('images/application_xp_terminal.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\application_xp_terminal.png','DATA'),
+('images/application_osx_terminal.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\application_osx_terminal.png','DATA'),
+('images/table.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\table.png','DATA'),
+('images/table_edit.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\table_edit.png','DATA'),
+('images/help.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\help.png','DATA'),
+('images/accept.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\accept.png','DATA'),
+('images/exclamation.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\exclamation.png','DATA')]
+
+2. Build from the spec file.
+python Build.py Mantib\Mantib.spec
+
+3. Program executable will be in Mantib\Dist from the pyinstaller directory.
