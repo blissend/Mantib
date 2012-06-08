@@ -38,7 +38,7 @@ import csv # For import/export server group operations
 import logging
 import logging.handlers # Used to fine tune log rotation
 
-LICENSE = """Mantib - A portable Valve server management app.
+LICENSE = """Mantib - A portable game server management app.
 Copyright (C) 2012  Adam Carlin
 
 This program is free software: you can redistribute it and/or modify
@@ -475,13 +475,13 @@ class Mantib(wx.App):
     def about(self, event):
         info = wx.AboutDialogInfo()
         info.Name = "Mantib"
-        info.Version = "2012.05.18 (beta 0)"
+        info.Version = "2012.06.08.1"
         info.Copyright = "(C) 2012 Adam Carlin"
         info.Description = wordwrap(
             "A portable cross-platform application to manage Valve "
             "daemons running on Linux/Cygwin servers.",
             300, wx.ClientDC(self.frame))
-        info.WebSite = ("http://www.blissend.com/projects", "Mantib Website")
+        info.WebSite = ("http://www.blissend.com/mantib", "Mantib Website")
         info.Developers = ["Adam Carlin", "Adam's \"Imaginary Friend\""]
         license_text = LICENSE
         info.Licence = wordwrap(license_text,
