@@ -43,7 +43,7 @@ a.datas += [('xml/Mantib.xrc','L:\\Dropbox\\Private\\Projects\\Mantib\\xml\\Mant
 ('images/accept.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\accept.png','DATA'),
 ('images/exclamation.png','L:\\Dropbox\\Private\\Projects\\Mantib\\images\\exclamation.png','DATA')]
 
-2. Build from the spec file.
+3. Build from the spec file.
 python Build.py Mantib\Mantib.spec
 
-3. Program executable will be in Mantib\Dist from the pyinstaller directory.
+4. Program executable will be in Mantib\Dist from the pyinstaller directory.
