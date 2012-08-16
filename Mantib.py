@@ -73,6 +73,7 @@ how return results work. First the tags...
 {NONE} - Expect no response
 {NULL} - Command/Response does not matter
 {SESSION} - Runs the command in the stripped down interactive SSH terminal
+{NAME} - Inserts the server name (usefull for script arguments)
 
 Note that you must enclose the tag with curly brackets and use upper case.
 
@@ -475,14 +476,14 @@ class Mantib(wx.App):
     def about(self, event):
         info = wx.AboutDialogInfo()
         info.Name = "Mantib"
-        info.Version = "2012.06.08.1"
-        info.Copyright = "(C) 2012 Adam Carlin"
+        info.Version = "2012.08.14.2"
+        info.Copyright = "(C) 2012 Blissend (Adam Carlin)"
         info.Description = wordwrap(
             "A portable cross-platform application to manage Valve "
             "daemons running on Linux/Cygwin servers.",
             300, wx.ClientDC(self.frame))
         info.WebSite = ("http://www.blissend.com/mantib", "Mantib Website")
-        info.Developers = ["Adam Carlin", "Adam's \"Imaginary Friend\""]
+        info.Developers = ["Blissend (Adam Carlin)", "Bliss's \"Imaginary Friend\""]
         license_text = LICENSE
         info.Licence = wordwrap(license_text,
             500, wx.ClientDC(self.frame), breakLongWords=False)
@@ -2191,7 +2192,7 @@ class Mantib(wx.App):
                             wx.CallAfter(
                                 self.output,
                                 daemon['name'] + ' - connection closed', action)
-                            wx.CallAfter(self.daemon_cleanup, daemon['name'])
+                            #wx.CallAfter(self.daemon_cleanup, daemon['name'])
                             return
                     else:
                         wx.CallAfter(
@@ -2201,7 +2202,7 @@ class Mantib(wx.App):
                             wx.CallAfter(
                                 self.output,
                                 daemon['name'] + ' - connection closed', action)
-                            wx.CallAfter(self.daemon_cleanup, daemon['name'])
+                            #wx.CallAfter(self.daemon_cleanup, daemon['name'])
                             return
 
             # Now run the actual command
@@ -2247,7 +2248,8 @@ class Mantib(wx.App):
             '{DUCHECK}': self.settings['daemon_update_check'],
             '{DUSTART}': self.settings['daemon_update_start'],
             '{DUSTOP}': self.settings['daemon_update_stop'],
-            '{IP}': daemon['ipaddress']}
+            '{IP}': daemon['ipaddress'],
+            '{NAME}': daemon['name']}
         # Replace all tags except for pause tag
         for tag in tags:
             new_command[str(count_command)] = (
@@ -2378,8 +2380,8 @@ class Mantib(wx.App):
                     formatted += sline
                     #length = len(sline)
                     #print 'LINE (' + str(length) + '): ' + sline
-                if len(formatted) > 0:
-                    wx.CallAfter(self.ssh_output, formatted)
+                if len(check) > 0:
+                    wx.CallAfter(self.ssh_output, check)
 
     def ssh_thread_send(self, daemon=''):
         while self.client['chan'] != -1:
