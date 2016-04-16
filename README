@@ -1,3 +1,5 @@
+Abandoned project. Kept for posterity.
+
 Overview
 ========
 Mantib is a portable opensource (GPL License) crossplatform (Windows/Linux/OSX) game server management tool especially designed for Valve games running on servers with SSH access. It's purpose is to help eliminate the need to manually enter commands for server management.
